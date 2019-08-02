@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Equipo;
 
 class EquipoController extends Controller
 {
@@ -13,7 +14,8 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        //
+        $equipo=Equipo::all();
+        return response()->json(['Equipo'=>$equipo,'code'=>200]);
     }
 
     /**
@@ -34,7 +36,16 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(empty($request->descripcion) ) {
+
+            return response()->json(['message'=>'El campo es requerido', 'code'=>'406']);
+        }
+
+        $equipo = new Equipo();
+        $equipo->descripcion=$request->descripcion;
+        
+        $equipo->save();
+        return response()->json(['message'=>'Equipo creado correctamente', 'code'=>'201']);
     }
 
     /**
@@ -45,7 +56,11 @@ class EquipoController extends Controller
      */
     public function show($id)
     {
-        //
+        $equipo= Equipo::find($id);
+        if((empty($equipo))){
+            return response()->json(['mensaje'=>'Equipo no encontrado','code'=>'404']);
+        }
+        return response()->json(['Equipo'=> $equipo,'code'=>'200']);
     }
 
     /**
@@ -68,7 +83,22 @@ class EquipoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         if(empty($request->descripcion) ) {
+
+            return response()->json(['message'=>'El campo es requerido', 'code'=>'406']);
+        }
+
+
+        $equipo=Equipo::find($id);
+        if(empty($equipo)){
+
+                return response()->json(['message'=>'Equipo no encontrado', 'code'=>'404']);
+        }
+        
+        $equipo->descripcion=$request->descripcion;
+        
+        $equipo->save();
+        return response()->json(['message'=>'Equipo actualizado', 'code'=>'200']);
     }
 
     /**
@@ -79,6 +109,22 @@ class EquipoController extends Controller
      */
     public function destroy($id)
     {
-        //
+         if(empty($id)) {
+
+            return response()->json(['message'=>'el id es obligatorio', 'code'=>'406']);
+        }
+
+
+        $equipo=Equipo::find($id);
+        if(empty($equipo)){
+
+                return response()->json(['message'=>'Equipo no encontrado', 'code'=>'404']);
+        }
+        
+        $equipo->delete();
+
+        return response()->json(['message'=>'Equipo borrado', 'code'=>'200']);
+
     }
+    
 }

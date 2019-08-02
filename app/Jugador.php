@@ -9,4 +9,5 @@ class Jugador extends Model
     protected $table = "jugadoresses";
     protected $primaryKey = "id";
     public $timestamps = false;
+    
 }
