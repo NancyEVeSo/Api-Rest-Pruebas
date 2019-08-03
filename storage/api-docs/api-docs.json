@@ -1,0 +1,329 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Nancy Apis",
+        "version": "1.0.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/equipo": {
+            "get": {
+                "tags": [
+                    "Lista de Equipo"
+                ],
+                "summary": "Lista de Equipo",
+                "operationId": "getCustomerRates",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "406": {
+                        "description": "not acceptable"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Lista de Equipo"
+                ],
+                "summary": "Obtener Equipo",
+                "operationId": "getCustomerRates 1",
+                "parameters": [
+                    {
+                        "name": "descripcion",
+                        "in": "formData",
+                        "description": "ingresar equipo",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/equipo/{id}": {
+            "get": {
+                "tags": [
+                    "Lista de Equipo"
+                ],
+                "summary": "Obtener Equipo",
+                "operationId": "getRed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ingresar id del equipo",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "datos obtenidos correctamente"
+                    },
+                    "404": {
+                        "description": "el id de equipo no existe"
+                    },
+                    "422": {
+                        "description": "no se permiten valores nulos"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Lista de Equipo"
+                ],
+                "summary": "actualizar equipos compartidas",
+                "operationId": "sharedRed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ingresar id de equipos",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "descripcion",
+                        "in": "formData",
+                        "description": "ingresar equipo",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "datos obtenidos correctamente"
+                    },
+                    "404": {
+                        "description": "usuario no encontrado"
+                    },
+                    "422": {
+                        "description": "no se permiten valores nulos"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Lista de Equipo"
+                ],
+                "summary": "eliminar Equipo",
+                "operationId": "deleteEquipo",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ingresar el id de equipo",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "equipo eliminada correctamente"
+                    },
+                    "404": {
+                        "description": "equipo no encontrada"
+                    }
+                }
+            }
+        },
+        "/jugador": {
+            "get": {
+                "tags": [
+                    "Lista de Jugador"
+                ],
+                "summary": "Lista de Jugador",
+                "operationId": "getCustomerRates",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "406": {
+                        "description": "not acceptable"
+                    },
+                    "500": {
+                        "description": "internal server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Lista de Jugador"
+                ],
+                "summary": "Lista de Jugador",
+                "operationId": "getCustomerRates 1",
+                "parameters": [
+                    {
+                        "name": "idequipo",
+                        "in": "formData",
+                        "description": "ingresar id  equipo",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "formData",
+                        "description": "ingresar nombre",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellido",
+                        "in": "formData",
+                        "description": "ingresar apellido",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "edad",
+                        "in": "formData",
+                        "description": "ingresar edad",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pais",
+                        "in": "formData",
+                        "description": "ingresar pais",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/jugador/{id}": {
+            "get": {
+                "tags": [
+                    "Lista de Jugador"
+                ],
+                "summary": "Obtener Jugador",
+                "operationId": "getRed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ingresar id del jugador",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "datos obtenidos correctamente"
+                    },
+                    "404": {
+                        "description": "el id de jugador no existe"
+                    },
+                    "422": {
+                        "description": "no se permiten valores nulos"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Lista de Jugador"
+                ],
+                "summary": "actualizar jugadores compartidas",
+                "operationId": "sharedRed",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ingresar id de jugadores",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "idequipo",
+                        "in": "formData",
+                        "description": "ingresar id  equipo",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "nombre",
+                        "in": "formData",
+                        "description": "ingresar nombre",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "apellido",
+                        "in": "formData",
+                        "description": "ingresar apellido",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "edad",
+                        "in": "formData",
+                        "description": "ingresar edad",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pais",
+                        "in": "formData",
+                        "description": "ingresar pais",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "datos obtenidos correctamente"
+                    },
+                    "404": {
+                        "description": "jugador no encontrado"
+                    },
+                    "422": {
+                        "description": "no se permiten valores nulos"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Lista de Jugador"
+                ],
+                "summary": "eliminar Jugador",
+                "operationId": "deleteJugador",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ingresar el id de jugador",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "jugador eliminada correctamente"
+                    },
+                    "404": {
+                        "description": "jugador no encontrada"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}

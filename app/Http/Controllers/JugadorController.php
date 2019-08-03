@@ -9,32 +9,72 @@ use App\Jugador;
 class JugadorController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ * @SWG\Get(
+ *   path="/jugador",
+ *   tags={"Lista de Jugador"},
+ *   summary="Lista de Jugador",
+ *   operationId="getCustomerRates",
+ *   
+ *   @SWG\Response(response=200, description="successful operation"),
+ *   @SWG\Response(response=406, description="not acceptable"),
+ *   @SWG\Response(response=500, description="internal server error")
+ * )
+ *
+ */
     public function index()
     {
         $judador=Jugador::all();
         return response()->json(['Jugador'=>$judador,'code'=>200]);
     }
 
-    /**
-     * Show the form for creating a new resource.
+   /**
+     * @SWG\Post(
+     *   path="/jugador",
+ *       tags={"Lista de Jugador"},
+ *       summary="Lista de Jugador",
+     *   operationId="getCustomerRates 1",
+     *   @SWG\Parameter(
+     *     name="idequipo",
+     *     in="formData",
+     *     description="ingresar id  equipo",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="nombre",
+     *     in="formData",
+     *     description="ingresar nombre",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *  @SWG\Parameter(
+     *     name="apellido",
+     *     in="formData",
+     *     description="ingresar apellido",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   *  @SWG\Parameter(
+     *     name="edad",
+     *     in="formData",
+     *     description="ingresar edad",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   *  @SWG\Parameter(
+     *     name="pais",
+     *     in="formData",
+     *     description="ingresar pais",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Response(response=200, description="successful operation"),
+     *   @SWG\Response(response=404, description="not found"),)
+     * )
      *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
+    
     public function store(Request $request)
     {
         if(empty($request->nombre) || empty($request->apellido)|| empty($request->edad)||empty($request->pais)) {
@@ -52,12 +92,24 @@ class JugadorController extends Controller
         $judador->save();
         return response()->json(['message'=>'judador creado correctamente', 'code'=>'201']);
     }
-
-    /**
-     * Display the specified resource.
+/**
+     * @SWG\Get(
+     *   path="/jugador/{id}",
+     *   tags={"Lista de Jugador"},
+     *   summary="Obtener Jugador",
+     *   operationId="getRed",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="ingresar id del jugador",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Response(response=200, description="datos obtenidos correctamente"),
+     *   @SWG\Response(response=404, description="el id de jugador no existe"),
+     *   @SWG\Response(response=422, description="no se permiten valores nulos"),
+     * )
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -68,20 +120,59 @@ class JugadorController extends Controller
         return response()->json(['Jugador'=> $judador,'code'=>'200']);
     }
 
-    /**
-     * Show the form for editing the specified resource.
+   /**
+     * @SWG\Put(
+     *   path="/jugador/{id}",
+     *   tags={"Lista de Jugador"},
+     *   summary="actualizar jugadores compartidas",
+     *   operationId="sharedRed",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="ingresar id de jugadores",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   *   @SWG\Parameter(
+     *     name="idequipo",
+     *     in="formData",
+     *     description="ingresar id  equipo",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="nombre",
+     *     in="formData",
+     *     description="ingresar nombre",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *  @SWG\Parameter(
+     *     name="apellido",
+     *     in="formData",
+     *     description="ingresar apellido",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   *  @SWG\Parameter(
+     *     name="edad",
+     *     in="formData",
+     *     description="ingresar edad",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   *  @SWG\Parameter(
+     *     name="pais",
+     *     in="formData",
+     *     description="ingresar pais",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Response(response=200, description="datos obtenidos correctamente"),
+     *   @SWG\Response(response=404, description="jugador no encontrado"),
+     *   @SWG\Response(response=422, description="no se permiten valores nulos"),
+     * )
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-   
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -108,10 +199,22 @@ class JugadorController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @SWG\Delete(
+     *   path="/jugador/{id}",
+     *   tags={"Lista de Jugador"},
+     *   summary="eliminar Jugador",
+     *   operationId="deleteJugador",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="ingresar el id de jugador",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Response(response=204, description="jugador eliminada correctamente"),
+     *   @SWG\Response(response=404, description="jugador no encontrada"),
+     * )
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

@@ -8,31 +8,51 @@ use App\Equipo;
 class EquipoController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ * @SWG\Swagger(
+ *   basePath="/api/v1",
+ *   @SWG\Info(
+ *     title="Nancy Apis",
+ *     version="1.0.0"
+ *   )
+ * )
+ */
+/**
+ * @SWG\Get(
+ *   path="/equipo",
+ *   tags={"Lista de Equipo"},
+ *   summary="Lista de Equipo",
+ *   operationId="getCustomerRates",
+ *   
+ *   @SWG\Response(response=200, description="successful operation"),
+ *   @SWG\Response(response=406, description="not acceptable"),
+ *   @SWG\Response(response=500, description="internal server error")
+ * )
+ *
+ */
     public function index()
     {
         $equipo=Equipo::all();
         return response()->json(['Equipo'=>$equipo,'code'=>200]);
     }
 
-    /**
-     * Show the form for creating a new resource.
+   /**
+     * @SWG\Post(
+     *   path="/equipo",
+     *   tags={"Lista de Equipo"},
+     *   summary="Obtener Equipo",
+     *   operationId="getCustomerRates 1",
+     *   @SWG\Parameter(
+     *     name="descripcion",
+     *     in="formData",
+     *     description="ingresar equipo",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *  
+     *   @SWG\Response(response=200, description="successful operation"),
+     *   @SWG\Response(response=404, description="not found"),)
+     * )
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -49,10 +69,23 @@ class EquipoController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @SWG\Get(
+     *   path="/equipo/{id}",
+     *   tags={"Lista de Equipo"},
+     *   summary="Obtener Equipo",
+     *   operationId="getRed",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="ingresar id del equipo",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Response(response=200, description="datos obtenidos correctamente"),
+     *   @SWG\Response(response=404, description="el id de equipo no existe"),
+     *   @SWG\Response(response=422, description="no se permiten valores nulos"),
+     * )
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -75,11 +108,30 @@ class EquipoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @SWG\Put(
+     *   path="/equipo/{id}",
+     *   tags={"Lista de Equipo"},
+     *   summary="actualizar equipos compartidas",
+     *   operationId="sharedRed",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="ingresar id de equipos",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Parameter(
+     *     name="descripcion",
+     *     in="formData",
+     *     description="ingresar equipo",
+     *     required=true,
+     *     type="string"
+     *   ),
+     *   @SWG\Response(response=200, description="datos obtenidos correctamente"),
+     *   @SWG\Response(response=404, description="usuario no encontrado"),
+     *   @SWG\Response(response=422, description="no se permiten valores nulos"),
+     * )
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -102,10 +154,22 @@ class EquipoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @SWG\Delete(
+     *   path="/equipo/{id}",
+     *   tags={"Lista de Equipo"},
+     *   summary="eliminar Equipo",
+     *   operationId="deleteEquipo",
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="ingresar el id de equipo",
+     *     required=true,
+     *     type="integer"
+     *   ),
+     *   @SWG\Response(response=204, description="equipo eliminada correctamente"),
+     *   @SWG\Response(response=404, description="equipo no encontrada"),
+     * )
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
